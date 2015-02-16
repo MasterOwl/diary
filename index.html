@@ -1,0 +1,165 @@
+<!-- <!DOCTYPE html> -->
+<html>
+<head>
+	<title>Diary</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="_/css/reset.css">
+	<link rel="stylesheet" href="_/css/jquery-ui.min.css">
+	<link rel="stylesheet" href="_/css/mystyle.css">
+	<script src="_/js/jquery.js"></script>
+	<script src="_/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+	 <link href='http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+	<script src="_/js/myscript.js"></script>
+</head>
+<body>
+	<header id="header">
+		<div id="nav-menu">
+			<div id="logo"><img src="images/owl_diary55.png"></div>
+			<ul>
+				<li><a href="#event-add">Add Event</a></li>
+				<li><a href="#list">Events List</a></li>
+				<li><a href="#places">Places</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<div id="event-add" class="page">
+	    <div class="wrap">
+			<h1>Fill in the event details!</h1>
+			<div id='eventMainParams'>
+				<label for="evtname">Event Name:</label>
+		    	<input type="text" id="evtname" name="evtname">
+		    	<label for="date">Event Date:</label>
+				<input type="text" id="date" name="date"><br>
+			</div>
+			
+			<div id="eventSecondaryParams">
+				<div id="holder1">
+					<label>Event description:</label><br>
+					<textarea id="msg-txt" placeholder="Remember, be nice!"></textarea>
+				</div>
+				<div id="holder2">
+					<label>Editing panel:</label><br>
+					<div id="editpane">
+						<div id="checkboxpane">
+							<input type="checkbox" value="italic" id="check1"><label for="check1">Italic</label>
+							<input type="checkbox" value="bold" id="check2"><label for="check2">Bold</label>
+							<input type="checkbox" value="underline" id="check3"><label for="check3">Underline</label>
+						</div>
+						<div id="colorpicker">
+							<button id="colorpickerbutton">Select color</button>
+							<div id="wrapper" style="display: none;">
+								<input type="radio" name="color" id="rad1" value="black" checked="true"><label for="rad1">Black</label><br>
+								<input type="radio" name="color" id="rad2" value="green"><label for="rad2">Green</label><br>
+								<input type="radio" name="color" id="rad3" value="red"><label for="rad3">Red</label><br>
+								<input type="radio" name="color" id="rad4" value="blue"><label for="rad4">Blue</label>
+							</div>
+						</div>
+						<div id="fontsize">
+							<select id="fsize">
+								<option value="10">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="25">25</option>
+								<option value="30">30</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="eventThirdParams">
+				<div id="mapholder">
+					<label>Drag marker to the event's place:</label>
+					<div id="map_canvas"></div>
+				</div>
+				<div id="holder3">
+					<label>Example links:</label>
+					<p>https://www.youtube.com/watch?v=A07zSr-JYFE</p><br>
+					<p>https://www.youtube.com/watch?v=wx2nuge9v0o</p><br>
+					<p>https://www.youtube.com/watch?v=m1Mub8DwLPQ</p><br>
+					<label for="video">YouTube link:</label>
+					<input type="text" id="video" name="video"><br>
+					<div id="attitude">
+						<label>Your attitude towards the event:</label>
+						<div id="relation">
+							<input type="radio" name="relation" id="rel1" value="nightmare"><label for="rel1">Nightmare</label>
+							<input type="radio" name="relation" id="rel2" value="negative"><label for="rel2">Negative</label>
+							<input type="radio" name="relation" id="rel3" value="positive"><label for="rel3">Positive</label>
+							<input type="radio" name="relation" id="rel4" value="awesome"><label for="rel4">Pure awesomeness</label>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			
+			<div id="actionbuttons">
+				<button id="submit">Publish event</button>
+				<button id="clearLocalStorage">Clear Local Storage</button>
+			</div>
+		</div>
+	</div>
+	<div id="list" class="page">
+		<h1>This is an events list</h1>
+		<p><strong>!NOTE </strong>You can get additional event information by clicking on its row.</p>
+		<div id="list-placeholder"></div>
+	</div>
+	<div id="event" class="page">
+		<div style="display: table;">
+			<div class="trow">
+				<div class="tcellName">
+					Event Name:
+				</div>
+				<div id="ename" class="tcellValue">
+				</div>
+			</div>
+			<div class="trow">
+				<div class="tcellName">
+					Event Date:
+				</div>
+				<div id="edate" class="tcellValue">
+				</div>
+			</div>
+			<div class="trow">
+				<div class="tcellName">
+					Event attitude:
+				</div>
+				<div id="erelation" class="tcellValue">
+				</div>
+			</div>
+			<div class="trow">
+				<div class="tcellName">
+					Event ID:
+				</div>
+				<div id="eid" class="tcellValue">
+				</div>
+			</div>
+			<div class="trow">
+				<div class="tcellName">
+					Event Description:
+				</div>
+				<div id="edescr" class="tcellValue">
+				</div>
+			</div>
+		</div>
+		<div id="media_content">
+			<div class="map">
+				<label for="emap">Event place:</label>
+				<div id="emap"></div>
+			</div>
+			<div class="video">
+				<label for="evideo">Event video:</label>
+				<div id="evideo"></div>
+			</div>
+		</div>
+	</div>
+	<div id="page404" class="page">
+		<h1>404</h1>
+	</div>
+	<div id="places" class="page">
+		<h1>Places</h1>
+		<p>Here you can see all event places</p>
+		<div id="places_map"></div>
+	</div>
+</body>
+</html>
